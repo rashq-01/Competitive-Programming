@@ -6,26 +6,21 @@ void fun(){
     string s;
     cin>>s;
 
-    string org = s;
-    sort(s.begin() ,s.end());
+    int n = s.length();
+    char minDig = '9';
+    string res = "";
 
-    int low = 0;
-    int high = 0;
-    while(high<s.size() && low<s.size()){
-        while(high<s.size() && s[low] != org[high]){
-            high++;
-        }
-        if(high<s.size() && s[low] == org[high]){
-            high++;
-            low++;
+    for(int i=n-1;i>=0;--i){
+        if(s[i]>minDig){
+            res += min((char)(s[i] + 1) , '9');
+        }else{
+            minDig = s[i];
+            res +=s[i];
         }
     }
-    while(low<s.size()){
-        s[low] = min((s[low]+1) , '9' + 0);
-        low++;
 
-    }
-    cout<<s<<endl;
+    sort(res.begin() , res.end());
+    cout<<res<<endl;
 
 }
 
